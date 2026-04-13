@@ -1,28 +1,71 @@
 import { defineConfig } from 'vitepress'
+import { generateSidebar } from 'vitepress-sidebar'
 
-// https://vitepress.dev/reference/site-config
+/** Defines a sidebar configuration for a language and top-level section. */
+function defineSidebar(lang: string, text: string) {
+  const prefixPath = `${lang}/${text}`
+  return {
+    documentRootPath: 'docs',
+    scanStartPath: prefixPath,
+    resolvePath: `/${prefixPath}/`,
+    useTitleFromFileHeading: true,
+    capitalizeFirst: true,
+    collapseDepth: 2
+  };
+}
+
+/** Defines a locale configuration specific to one language. */
+function defineLocale(lang: string, label: string) {
+  return {
+    lang,
+    label,
+    themeConfig: {
+      socialLinks: [
+        { icon: 'github', link: 'https://github.com/Sigrist-und-Partner-AG/knowledge-base' },
+        { icon: 'youtube', link: 'https://www.youtube.com/@HSigristPartnerAG' },
+        { icon: 'instagram', link: 'https://www.instagram.com/dosiersysteme/' }
+      ],
+      nav: [
+        { text: 'Webshop', link: 'https://dosiersysteme.ch' },
+        { text: 'C100-4.0', link: `/${lang}/C100-4.0/` }
+      ],
+      sidebar: generateSidebar([
+        defineSidebar(lang, 'C100-4.0')
+      ]),
+      footer: {
+        copyright: '© 2026 H. Sigrist & Partner AG'
+      }
+    }
+  };
+}
+
+// Complete configuration that takes effect
 export default defineConfig({
   title: "Knowledge Base",
   description: "H. Sigrist & Partner Knowledge Base",
+  locales: {
+    en: defineLocale('en', 'English')
+  },
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
-    ],
-
-    sidebar: [
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
+    search: {
+      provider: 'local' as const,
+      options: {
+        detailedView: true
       }
-    ],
-
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ]
-  }
-})
+    },
+    outline: {
+      level: [2, 3]
+    },
+    lastUpdated: {
+      formatOptions: {
+        dateStyle: 'long',
+        timeStyle: 'short',
+        hour12: false
+      }
+    },
+    editLink: {
+      pattern: 'https://github.com/Sigrist-und-Partner-AG/knowledge-base/edit/master/docs/:path'
+    }
+  },
+  cleanUrls: true,
+});
