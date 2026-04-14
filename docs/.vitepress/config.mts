@@ -8,8 +8,10 @@ function defineSidebar(lang: string, text: string) {
     documentRootPath: 'docs',
     scanStartPath: prefixPath,
     resolvePath: `/${prefixPath}/`,
+    rootGroupText: text,
     useTitleFromFileHeading: true,
-    capitalizeFirst: true,
+    capitalizeEachWords: true,
+    sortMenusByFrontmatterOrder: true,
     collapseDepth: 2
   };
 }
