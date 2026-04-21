@@ -1,9 +1,10 @@
-import { defineConfig } from 'vitepress'
-import { generateSidebar } from 'vitepress-sidebar'
+import { defineConfig } from 'vitepress';
+import { generateSidebar } from 'vitepress-sidebar';
+import { type Locale, english } from './i18n';
 
 /** Defines a sidebar configuration for a language and top-level section. */
 function defineSidebar(lang: string, text: string) {
-  const prefixPath = `${lang}/${text}`
+  const prefixPath = `${lang}/${text}`;
   return {
     documentRootPath: 'docs',
     scanStartPath: prefixPath,
@@ -17,10 +18,10 @@ function defineSidebar(lang: string, text: string) {
 }
 
 /** Defines a locale configuration specific to one language. */
-function defineLocale(lang: string, label: string) {
+function defineLocale(locale: Locale) {
   return {
-    lang,
-    label,
+    lang: locale.lang,
+    label: locale.label,
     themeConfig: {
       socialLinks: [
         { icon: 'github', link: 'https://github.com/Sigrist-und-Partner-AG/knowledge-base' },
@@ -29,24 +30,25 @@ function defineLocale(lang: string, label: string) {
       ],
       nav: [
         { text: 'Webshop', link: 'https://dosiersysteme.ch' },
-        { text: 'C100-4.0', link: `/${lang}/C100-4.0/` }
+        { text: 'C100-4.0', link: `/${locale.lang}/C100-4.0/` }
       ],
       sidebar: generateSidebar([
-        defineSidebar(lang, 'C100-4.0')
+        defineSidebar(locale.lang, 'C100-4.0')
       ]),
       footer: {
         copyright: '© 2026 H. Sigrist & Partner AG'
-      }
+      },
+      ...locale.themeConfig
     }
   };
 }
 
-// Complete configuration that takes effect
+/** The complete configuration that takes effect. */
 export default defineConfig({
-  title: "Knowledge Base",
-  description: "H. Sigrist & Partner Knowledge Base",
+  title: 'Knowledge Base',
+  description: 'H. Sigrist & Partner Knowledge Base',
   locales: {
-    en: defineLocale('en', 'English')
+    en: defineLocale(english)
   },
   themeConfig: {
     search: {
@@ -60,14 +62,12 @@ export default defineConfig({
     },
     lastUpdated: {
       formatOptions: {
-        dateStyle: 'long',
-        timeStyle: 'short',
-        hour12: false
+        forceLocale: true
       }
     },
     editLink: {
       pattern: 'https://github.com/Sigrist-und-Partner-AG/knowledge-base/edit/master/docs/:path'
     }
   },
-  cleanUrls: true,
+  cleanUrls: true
 });
