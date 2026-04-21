@@ -113,3 +113,60 @@ export const english = {
     }
   }
 } satisfies Locale;
+
+/** Translation strings for German. */
+export const german = {
+  lang: 'de',
+  label: 'Deutsch',
+  themeConfig: {
+    lightModeSwitchTitle: 'Zum hellen Design wechseln',
+    darkModeSwitchTitle: 'Zum dunklen Design wechseln',
+    darkModeSwitchLabel: 'Darstellung',
+    langMenuLabel: 'Sprache wechseln',
+    sidebarMenuLabel: 'Menü',
+    returnToTopLabel: 'Zurück nach oben',
+    outline: {
+      label: 'Auf dieser Seite'
+    },
+    lastUpdated: {
+      text: 'Zuletzt aktualisiert',
+      formatOptions: {
+        dateStyle: 'long',
+        timeStyle: 'short',
+        hour12: false
+      }
+    },
+    editLink: {
+      text: 'Diese Seite bearbeiten'
+    },
+    docFooter: {
+      prev: 'Vorherige Seite',
+      next: 'Nächste Seite'
+    },
+    search: {
+      options: {
+        translations: {
+          button: {
+            buttonText: 'Suche',
+            buttonAriaLabel: 'Suche'
+          },
+          modal: {
+            displayDetails: 'Details anzeigen',
+            resetButtonTitle: 'Suche zurücksetzen',
+            backButtonTitle: 'Suche schliessen',
+            noResultsText: 'Keine Ergebnisse für',
+            footer: {
+              selectText: 'auswählen',
+              selectKeyAriaLabel: 'Enter',
+              navigateText: 'navigieren',
+              navigateUpKeyAriaLabel: 'Pfeil nach oben',
+              navigateDownKeyAriaLabel: 'Pfeil nach unten',
+              closeText: 'schliessen',
+              closeKeyAriaLabel: 'Escape'
+            }
+          }
+        }
+      }
+    }
+  }
+} satisfies Locale;

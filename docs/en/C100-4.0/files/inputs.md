@@ -15,6 +15,7 @@ Up to 6 analog inputs are supported:
 | `input6.txt` | A6                | External analog input (optional)                   |
 
 Internal analog input files are recreated automatically at boot if missing.
+For external analog input files the same applies, but only if the input voltage exceeds `0V` (indicating a sensor).
 
 > [!IMPORTANT]
 > External analog inputs require the **Analog Input** hardware extension.

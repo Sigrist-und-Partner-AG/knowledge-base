@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { generateSidebar } from 'vitepress-sidebar';
-import { type Locale, english } from './i18n';
+import { type Locale, english, german } from './i18n';
 
 /** Defines a sidebar configuration for a language and top-level section. */
 function defineSidebar(lang: string, text: string) {
@@ -10,8 +10,10 @@ function defineSidebar(lang: string, text: string) {
     scanStartPath: prefixPath,
     resolvePath: `/${prefixPath}/`,
     rootGroupText: text,
+    capitalizeFirst: true,
     useTitleFromFileHeading: true,
-    capitalizeEachWords: true,
+    useFolderTitleFromIndexFile: true,
+    useFolderLinkFromIndexFile: true,
     sortMenusByFrontmatterOrder: true,
     collapseDepth: 2
   };
@@ -48,7 +50,8 @@ export default defineConfig({
   title: 'Knowledge Base',
   description: 'H. Sigrist & Partner Knowledge Base',
   locales: {
-    en: defineLocale(english)
+    en: defineLocale(english),
+    de: defineLocale(german)
   },
   themeConfig: {
     search: {
