@@ -4,7 +4,7 @@ Die Datei `settings.txt` enthält systemweite Geräteeinstellungen.
 
 ## Beispiel {#example}
 
-```ini
+```c100
 # Beim Start Programm 10 laden
 program:10
 locked:true

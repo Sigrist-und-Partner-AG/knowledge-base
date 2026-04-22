@@ -1,6 +1,14 @@
+import { readFileSync } from 'node:fs';
 import { defineConfig } from 'vitepress';
 import { generateSidebar } from 'vitepress-sidebar';
 import { type Locale, english, german } from './i18n';
+
+/** Loads a TextMate grammar from disk, returning it as an object. */
+function defineLanguage(name: string) {
+  const file = new URL(`./grammars/${name}.json`, import.meta.url);
+  const json = JSON.parse(readFileSync(file, 'utf8'));
+  return { ...json, name };
+}
 
 /** Defines a sidebar configuration for a language and top-level section. */
 function defineSidebar(lang: string, text: string) {
@@ -49,6 +57,7 @@ function defineLocale(locale: Locale) {
 export default defineConfig({
   title: 'Knowledge Base',
   description: 'H. Sigrist & Partner Knowledge Base',
+  cleanUrls: true,
   locales: {
     en: defineLocale(english),
     de: defineLocale(german)
@@ -72,5 +81,16 @@ export default defineConfig({
       pattern: 'https://github.com/Sigrist-und-Partner-AG/knowledge-base/edit/master/docs/:path'
     }
   },
-  cleanUrls: true
+  markdown: {
+    theme: {
+      light: 'github-light',
+      dark: 'github-dark'
+    },
+    languages: [
+      defineLanguage('c100')
+    ],
+    languageLabel: {
+      c100: 'C100-4.0'
+    }
+  }
 });

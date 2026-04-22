@@ -22,7 +22,7 @@ Für externe Analogeingänge ist dies nur der Fall, wenn die Eingangsspannung ü
 
 ## Beispiel {#example}
 
-```ini
+```c100
 # Analogsignal in Prozent umrechnen
 name:Füllstand
 unit:%

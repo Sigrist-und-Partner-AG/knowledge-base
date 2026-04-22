@@ -4,7 +4,7 @@ The `settings.txt` file contains system-wide device settings.
 
 ## Example
 
-```ini
+```c100
 # Load program 10 on boot
 program:10
 locked:true

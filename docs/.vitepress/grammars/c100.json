@@ -1,0 +1,43 @@
+{
+  "name": "C100-4.0",
+  "scopeName": "source.c100",
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#mapping" }
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.c100",
+          "match": "^#.*$"
+        }
+      ]
+    },
+    "mapping": {
+      "patterns": [
+        {
+          "name": "meta.mapping.c100",
+          "begin": "^([^:]+)(:)",
+          "beginCaptures": {
+            "1": { "name": "entity.other.attribute-name.c100" },
+            "2": { "name": "punctuation.separator.key-value.c100" }
+          },
+          "end": "$",
+          "contentName": "meta.mapping.value.c100",
+          "patterns": [
+            { "include": "#value" }
+          ]
+        }
+      ]
+    },
+    "value": {
+      "patterns": [
+        {
+          "name": "string.unquoted.c100",
+          "match": ".*"
+        }
+      ]
+    }
+  }
+}

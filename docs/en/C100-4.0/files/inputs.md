@@ -22,7 +22,7 @@ For external analog input files the same applies, but only if the input voltage 
 
 ## Example
 
-```ini
+```c100
 # Treat analog input as a percentage
 name:Fill level
 unit:%
