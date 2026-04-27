@@ -83,8 +83,8 @@ export default defineConfig({
   },
   markdown: {
     theme: {
-      light: 'github-light',
-      dark: 'github-dark'
+      light: 'material-theme-lighter',
+      dark: 'tokyo-night'
     },
     languages: [
       defineLanguage('c100')
