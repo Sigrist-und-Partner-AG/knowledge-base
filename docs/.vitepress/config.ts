@@ -39,7 +39,7 @@ function defineLocale(locale: Locale) {
         { icon: 'instagram', link: 'https://www.instagram.com/dosiersysteme/' }
       ],
       nav: [
-        { text: 'Webshop', link: 'https://dosiersysteme.ch' },
+        { text: 'Webshop', link: `https://dosiersysteme.ch/${locale.lang}/` },
         { text: 'C100-4.0', link: `/${locale.lang}/C100-4.0/` }
       ],
       sidebar: generateSidebar([
