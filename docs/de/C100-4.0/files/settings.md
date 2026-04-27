@@ -29,9 +29,8 @@ Programm `0` wird bei jedem Start zurückgesetzt.
 
 **Standardwert:** `0`
 
-::: info HINWEIS
-Diese Einstellung wird nur berücksichtigt, wenn [`locked`](#locked) auf `true` gesetzt ist.
-:::
+> [!INFO] HINWEIS
+> Diese Einstellung wird nur berücksichtigt, wenn [`locked`](#locked) auf `true` gesetzt ist.
 
 ### `locked`
 
@@ -54,10 +53,9 @@ Passwort oder Passphrase zum Sperren des Geräts.
 
 **Standardwert:** `1234`
 
-::: warning WARNUNG
-Dieses Passwort beschränkt nur den Zugriff über das Gerätedisplay.<br>
-Es wird im Klartext gespeichert und bietet keine kryptografische Sicherheit.
-:::
+> [!WARNING] WARNUNG
+> Dieses Passwort beschränkt nur den Zugriff über das Gerätedisplay.<br>
+> Es wird im Klartext gespeichert und bietet keine kryptografische Sicherheit.
 
 ### `language`
 
@@ -71,9 +69,8 @@ Sprache der Benutzeroberfläche auf dem Gerätedisplay.
 
 **Standardwert:** `de`
 
-::: info HINWEIS
-Andere zwei- oder dreistellige Sprachcodes werden als `en` behandelt.
-:::
+> [!INFO] HINWEIS
+> Andere zwei- oder dreistellige Sprachcodes werden als `en` behandelt.
 
 ### `keyboard`
 
@@ -142,9 +139,8 @@ Optimierungsziel für Flussdiagramme.
 
 **Standardwert:** `layout`
 
-::: tip TIPP
-Bei Flussdiagrammen mit 100 oder mehr Programmen ist `speed` deutlich schneller als `layout`.
-:::
+> [!TIP] TIPP
+> Bei Flussdiagrammen mit 100 oder mehr Programmen ist `speed` deutlich schneller als `layout`.
 
 > [!IMPORTANT] WICHTIG
 > Diese Einstellung setzt das Modul **Program Link** voraus.
@@ -160,10 +156,9 @@ Feinjustierung des thermischen Messverfahrens für Durchflussmessungen.
 
 **Standardwert:** `reaction_time`
 
-::: tip TIPP
-`reaction_time` kann bei stillstehenden Medien zu einem allmählichen Temperaturanstieg führen.
-Bei empfindlichen oder instabilen Medien sollte stattdessen `heat_emission` verwendet werden.
-:::
+> [!TIP] TIPP
+> `reaction_time` kann bei stillstehenden Medien zu einem allmählichen Temperaturanstieg führen.
+> Bei empfindlichen oder instabilen Medien sollte stattdessen `heat_emission` verwendet werden.
 
 > [!IMPORTANT] WICHTIG
 > Diese Einstellung setzt das Modul **Flow & Go** voraus.
@@ -181,10 +176,9 @@ Baudrate für die Kommunikation mit Motortreibern über den CAN-Bus.
 
 **Standardwert:** `250000`
 
-::: tip
-Die Baudrate der Motortreiber liegt standardmässig bei `500000`.
-Bei Verbindungsproblemen kann dieser Wert verwendet werden, um die Initialisierung des CAN-Bus als Ursache auszuschliessen.
-:::
+> [!TIP] TIPP
+> Die Baudrate der Motortreiber liegt standardmässig bei `500000`.
+> Bei Verbindungsproblemen kann dieser Wert verwendet werden, um die Initialisierung des CAN-Bus als Ursache auszuschliessen.
 
 > [!IMPORTANT] WICHTIG
 > Diese Einstellung setzt das Modul **Open Dynamic Control** voraus.
@@ -200,6 +194,5 @@ Zeit, nach der das Gerät bei anhaltender Reaktionslosigkeit automatisch neu ges
 
 **Standardwert:** `none`
 
-::: info HINWEIS
-Diese Einstellung wird nur berücksichtigt, wenn [`locked`](#locked) auf `true` gesetzt ist.
-:::
+> [!INFO] HINWEIS
+> Diese Einstellung wird nur berücksichtigt, wenn [`locked`](#locked) auf `true` gesetzt ist.

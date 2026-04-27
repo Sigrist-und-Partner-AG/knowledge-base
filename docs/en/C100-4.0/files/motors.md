@@ -53,10 +53,9 @@ The type of motor connected to the drive.
 
 **Default:** `eco-PEN600`
 
-::: tip
-All motors support the `angle` class.
-It serves as a common denominator for synchronized motion, even when no other classes are shared.
-:::
+> [!TIP]
+> All motors support the `angle` class.
+> It serves as a common denominator for synchronized motion, even when no other classes are shared.
 
 ### `drive`
 
@@ -82,10 +81,9 @@ Each class corresponds to a physical dimension for motion parameterization.
 
 **Default:** _(none)_
 
-::: info
-This setting may be specified multiple times to enable more than one unit class.<br>
-Only classes supported by the selected motor [`type`](#type) can be enabled.
-:::
+> [!INFO]
+> This setting may be specified multiple times to enable more than one unit class.<br>
+> Only classes supported by the selected motor [`type`](#type) can be enabled.
 
 ### `calibration`
 
@@ -93,6 +91,6 @@ The correction factor applied to all motor motion.
 
 | Value                 | Description                                            |
 |-----------------------|--------------------------------------------------------|
-| `1.00%` – `10000.00%` | Linearly scales all motion by the specified percentage |
+| `1.00%` – `10000.00%` | Motion is scaled linearly by the given percentage |
 
 **Default:** `100.00%`

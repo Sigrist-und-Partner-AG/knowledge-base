@@ -5,7 +5,7 @@ The `settings.txt` file contains system-wide device settings.
 ## Example
 
 ```c100
-# Load program 10 on boot
+# Load program 10 at boot
 program:10
 locked:true
 password:correct horse battery staple
@@ -22,20 +22,19 @@ file_compression:delta
 
 ### `program`
 
-The program to be loaded on boot.
+The program to be loaded at boot.
 
 Any program number is valid.
 Program `0` is non-persistent.
 
 **Default:** `0`
 
-::: info
+> [!INFO]
 This setting only takes effect if [`locked`](#locked) is set to `true`.
-:::
 
 ### `locked`
 
-Whether the device is locked on boot.
+Whether the device is locked at boot.
 
 | Value   | Description |
 |---------|-------------|
@@ -56,10 +55,9 @@ It must contain:
 
 **Default:** `1234`
 
-::: warning
-This password only restricts access via the device display.<br>
-It is stored in plaintext and provides no cryptographic security.
-:::
+> [!WARNING]
+> This password only restricts access via the device display.<br>
+> It is stored in plaintext and provides no cryptographic security.
 
 ### `language`
 
@@ -73,9 +71,8 @@ The language for the user interface shown on the device display.
 
 **Default:** `de`
 
-::: info
-Any other two- or three-letter language code is treated as `en`.
-:::
+> [!INFO]
+> Any other two- or three-letter language code is treated as `en`.
 
 ### `keyboard`
 
@@ -144,9 +141,8 @@ The optimization target when rendering flowcharts.
 
 **Default:** `layout`
 
-::: tip
-Prefer `speed` over `layout` for flowcharts with 100 or more programs.
-:::
+> [!TIP]
+> Prefer `speed` over `layout` for flowcharts with 100 or more programs.
 
 > [!IMPORTANT]
 > This setting requires the **Program Link** module.
@@ -162,9 +158,9 @@ The thermal optimization mode affecting flowmeter measurements.
 
 **Default:** `reaction_time`
 
-::: tip
-With `reaction_time`, a stagnant medium will gradually increase in temperature. Consider switching to `heat_emission` when handling a medium with sensitive or changing properties.
-:::
+> [!TIP]
+> With `reaction_time`, a stagnant medium will gradually increase in temperature.
+> Consider switching to `heat_emission` when handling a medium with sensitive or changing properties.
 
 > [!IMPORTANT]
 > This setting requires the **Flow & Go** module.
@@ -182,10 +178,9 @@ The CAN bus baud rate for communication with motor drives.
 
 **Default:** `250000`
 
-::: tip
-The default baud rate for motor drives is `500000`.
-Consider switching to this value if you are experiencing motor connection issues and want to rule out bus initialization as the root cause.
-:::
+> [!TIP]
+> The default baud rate for motor drives is `500000`.
+> Consider switching to this value if you are experiencing motor connection issues and want to rule out bus initialization as the root cause.
 
 > [!IMPORTANT]
 > This setting requires the **Open Dynamic Control** module.
@@ -201,6 +196,5 @@ The time the device may remain unresponsive before it is restarted automatically
 
 **Default:** `none`
 
-::: info
-This setting only takes effect if [`locked`](#locked) is set to `true`.
-:::
+> [!INFO]
+> This setting only takes effect if [`locked`](#locked) is set to `true`.

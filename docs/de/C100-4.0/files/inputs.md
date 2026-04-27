@@ -67,9 +67,8 @@ Kleinere Werte werden auf diesen begrenzt.
 
 **Standardwert:** `-10000.000`
 
-::: info HINWEIS
-Es gilt [`max`](#max) > [`min`](#min).
-:::
+> [!INFO] HINWEIS
+> Es gilt [`max`](#max) > [`min`](#min).
 
 ### `max`
 
@@ -82,9 +81,8 @@ Grössere Werte werden auf diesen begrenzt.
 
 **Standardwert:** `+10000.000`
 
-::: info HINWEIS
-Es gilt [`max`](#max) > [`min`](#min).
-:::
+> [!INFO] HINWEIS
+> Es gilt [`max`](#max) > [`min`](#min).
 
 ### `signal_min`
 
@@ -96,9 +94,8 @@ Eingangsspannung, die dem [`min`](#min)-Wert entspricht.
 
 **Standardwert:** `0.000V`
 
-::: info HINWEIS
-Es gilt [`signal_min`](#signal_min) ≠ [`signal_max`](#signal_max).
-:::
+> [!INFO] HINWEIS
+> Es gilt [`signal_min`](#signal_min) ≠ [`signal_max`](#signal_max).
 
 ### `signal_max`
 
@@ -110,6 +107,5 @@ Eingangsspannung, die dem [`max`](#max)-Wert entspricht.
 
 **Standardwert:** `10.000V`
 
-::: info HINWEIS
-Es gilt [`signal_min`](#signal_min) ≠ [`signal_max`](#signal_max).
-:::
+> [!INFO] HINWEIS
+> Es gilt [`signal_min`](#signal_min) ≠ [`signal_max`](#signal_max).
