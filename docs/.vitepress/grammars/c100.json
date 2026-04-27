@@ -16,12 +16,57 @@
     },
     "mapping": {
       "patterns": [
+        { "include": "#mapping-string" },
+        { "include": "#mapping-escape" },
+        { "include": "#mapping-generic" }
+      ]
+    },
+    "mapping-string": {
+      "patterns": [
         {
           "name": "meta.mapping.c100",
-          "begin": "^([^:]+)(:)",
+          "begin": "^(\\[.+?\\])?(name|comment|password|host|unit|\\d+)(\\[.+?\\])?(:)",
           "beginCaptures": {
-            "1": { "name": "entity.other.attribute-name.c100" },
-            "2": { "name": "punctuation.separator.key-value.c100" }
+            "1": { "name": "entity.name.tag.c100" },
+            "2": { "name": "entity.other.attribute-name.c100" },
+            "3": { "name": "entity.name.tag.c100" },
+            "4": { "name": "punctuation.separator.key-value.c100" }
+          },
+          "end": "$",
+          "contentName": "string.unquoted.c100"
+        }
+      ]
+    },
+    "mapping-escape": {
+      "patterns": [
+        {
+          "name": "meta.mapping.c100",
+          "begin": "^(\\[.+?\\])?(incoming_termination|outgoing_termination)(\\[.+?\\])?(:)",
+          "beginCaptures": {
+            "1": { "name": "entity.name.tag.c100" },
+            "2": { "name": "entity.other.attribute-name.c100" },
+            "3": { "name": "entity.name.tag.c100" },
+            "4": { "name": "punctuation.separator.key-value.c100" }
+          },
+          "end": "$",
+          "contentName": "string.unquoted.c100",
+          "patterns": [
+            { "include": "#number" },
+            { "include": "#escape" }
+          ]
+        }
+      ]
+    },
+    "mapping-generic": {
+      "patterns": [
+        {
+          "name": "meta.mapping.c100",
+          "begin": "^(\\[.+?\\])?([^:\\[]+)(\\[.+?\\])?(:)",
+          "beginCaptures": {
+            "1": { "name": "entity.name.tag.c100" },
+            "2": { "name": "entity.other.attribute-name.c100" },
+            "3": { "name": "entity.name.tag.c100" },
+            "4": { "name": "punctuation.separator.key-value.c100" }
           },
           "end": "$",
           "contentName": "meta.mapping.value.c100",
@@ -33,9 +78,40 @@
     },
     "value": {
       "patterns": [
+        { "include": "#keyword" },
+        { "include": "#number" },
+        { "include": "#enum" }
+      ]
+    },
+    "keyword": {
+      "patterns": [
         {
-          "name": "string.unquoted.c100",
-          "match": ".*"
+          "name": "constant.language.c100",
+          "match": "(?<=:)(none|true|false|autodetect)$"
+        }
+      ]
+    },
+    "number": {
+      "patterns": [
+        {
+          "name": "constant.numeric.c100",
+          "match": "(?<=:)[+-]?\\d.*$"
+        }
+      ]
+    },
+    "enum": {
+      "patterns": [
+        {
+          "name": "entity.name.constant.c100",
+          "match": "(?<=:).+$"
+        }
+      ]
+    },
+    "escape": {
+      "patterns": [
+        {
+          "name": "constant.character.escape.c100",
+          "match": "\\\\([\\\\0tnr]|x.{2})"
         }
       ]
     }
