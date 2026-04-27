@@ -29,7 +29,7 @@ Programm `0` wird bei jedem Start zurückgesetzt.
 
 **Standardwert:** `0`
 
-> [!INFO] HINWEIS
+> [!NOTE] HINWEIS
 > Diese Einstellung wird nur berücksichtigt, wenn [`locked`](#locked) auf `true` gesetzt ist.
 
 ### `locked`
@@ -69,7 +69,7 @@ Sprache der Benutzeroberfläche auf dem Gerätedisplay.
 
 **Standardwert:** `de`
 
-> [!INFO] HINWEIS
+> [!NOTE] HINWEIS
 > Andere zwei- oder dreistellige Sprachcodes werden als `en` behandelt.
 
 ### `keyboard`
@@ -194,5 +194,5 @@ Zeit, nach der das Gerät bei anhaltender Reaktionslosigkeit automatisch neu ges
 
 **Standardwert:** `none`
 
-> [!INFO] HINWEIS
+> [!NOTE] HINWEIS
 > Diese Einstellung wird nur berücksichtigt, wenn [`locked`](#locked) auf `true` gesetzt ist.

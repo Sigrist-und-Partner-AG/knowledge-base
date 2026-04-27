@@ -59,7 +59,7 @@ Since configuration order is not significant, sensors are linked by serial numbe
 
 **Default:** `autodetect`
 
-> [!INFO]
+> [!NOTE]
 > Once a sensor is auto-detected, [`serial`](#serial) is replaced with the actual serial number.
 
 ### `base`
@@ -86,7 +86,7 @@ The offset subtracted from each sample to correct for sensor drift.
 
 **Default:** `0.00`
 
-> [!INFO]
+> [!NOTE]
 > Negative offsets increase the resulting sample value.
 
 ### `calibration`

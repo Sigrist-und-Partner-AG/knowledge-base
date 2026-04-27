@@ -67,7 +67,7 @@ Values below this are clamped.
 
 **Default:** `-10000.000`
 
-> [!INFO]
+> [!NOTE]
 > [`max`](#max) > [`min`](#min) must hold.
 
 ### `max`
@@ -81,7 +81,7 @@ Values above this are clamped.
 
 **Default:** `+10000.000`
 
-> [!INFO]
+> [!NOTE]
 > [`max`](#max) > [`min`](#min) must hold.
 
 ### `signal_min`
@@ -94,7 +94,7 @@ The input signal voltage corresponding to [`min`](#min).
 
 **Default:** `0.000V`
 
-> [!INFO]
+> [!NOTE]
 > [`signal_min`](#signal_min) ≠ [`signal_max`](#signal_max) must hold.
 
 ### `signal_max`
@@ -107,5 +107,5 @@ The input signal voltage corresponding to [`max`](#max).
 
 **Default:** `10.000V`
 
-> [!INFO]
+> [!NOTE]
 > [`signal_min`](#signal_min) ≠ [`signal_max`](#signal_max) must hold.

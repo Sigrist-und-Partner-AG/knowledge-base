@@ -81,7 +81,7 @@ Each class corresponds to a physical dimension for motion parameterization.
 
 **Default:** _(none)_
 
-> [!INFO]
+> [!NOTE]
 > This setting may be specified multiple times to enable more than one unit class.<br>
 > Only classes supported by the selected motor [`type`](#type) can be enabled.
 

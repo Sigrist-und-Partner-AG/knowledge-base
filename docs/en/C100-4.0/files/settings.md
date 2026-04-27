@@ -29,7 +29,7 @@ Program `0` is non-persistent.
 
 **Default:** `0`
 
-> [!INFO]
+> [!NOTE]
 This setting only takes effect if [`locked`](#locked) is set to `true`.
 
 ### `locked`
@@ -71,7 +71,7 @@ The language for the user interface shown on the device display.
 
 **Default:** `de`
 
-> [!INFO]
+> [!NOTE]
 > Any other two- or three-letter language code is treated as `en`.
 
 ### `keyboard`
@@ -196,5 +196,5 @@ The time the device may remain unresponsive before it is restarted automatically
 
 **Default:** `none`
 
-> [!INFO]
+> [!NOTE]
 > This setting only takes effect if [`locked`](#locked) is set to `true`.
