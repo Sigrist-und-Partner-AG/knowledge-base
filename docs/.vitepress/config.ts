@@ -19,6 +19,7 @@ function defineSidebar(lang: string, text: string) {
     resolvePath: `/${prefixPath}/`,
     rootGroupText: text,
     capitalizeFirst: true,
+    useTitleFromFrontmatter: true,
     useTitleFromFileHeading: true,
     useFolderTitleFromIndexFile: true,
     useFolderLinkFromIndexFile: true,
@@ -56,7 +57,8 @@ function defineLocale(locale: Locale) {
 /** The complete configuration that takes effect. */
 export default defineConfig({
   title: 'Knowledge Base',
-  description: 'H. Sigrist & Partner Knowledge Base',
+  description: 'H. Sigrist & Partner AG Knowledge Base',
+  base: '/docs/',
   cleanUrls: true,
   locales: {
     en: defineLocale(english),

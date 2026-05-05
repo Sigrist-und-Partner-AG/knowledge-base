@@ -1,5 +1,5 @@
 {
-  description = "H. Sigrist & Partner Knowledge Base";
+  description = "H. Sigrist & Partner AG Knowledge Base";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-25.11-small";

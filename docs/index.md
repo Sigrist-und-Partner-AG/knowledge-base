@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Knowledge Base"
-  text: "H. Sigrist & Partner Knowledge Base"
+  text: "H. Sigrist & Partner AG Knowledge Base"
   tagline: My great project tagline
   actions:
     - theme: brand
