@@ -16,11 +16,17 @@ function applyVersionBadges() {
     });
 }
 
-/* Apply the version badge on page load or after page changes. */
-document.addEventListener('DOMContentLoaded', () => {
-  applyVersionBadges();
-  new MutationObserver(applyVersionBadges).observe(document.body, {
-    childList: true,
-    subtree: true
+/* Applies the version badge on page load or after page changes.
+ * Nothing happens if `document` does not exist yet. */
+export function setupVersionBadges() {
+  if (typeof document === 'undefined') {
+    return;
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    applyVersionBadges();
+    new MutationObserver(applyVersionBadges).observe(document.body, {
+      childList: true,
+      subtree: true
+    });
   });
-});
+}

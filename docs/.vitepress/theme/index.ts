@@ -1,10 +1,10 @@
-// https://vitepress.dev/guide/custom-theme
-import { h } from 'vue'
-import type { Theme } from 'vitepress'
-import DefaultTheme from 'vitepress/theme'
-import './style.css'
-import './badge.css'
-import './badge'
+import { h } from 'vue';
+import type { Theme } from 'vitepress';
+import DefaultTheme from 'vitepress/theme';
+
+import './style.css';
+import './badge.css';
+import { setupVersionBadges } from './badge';
 
 export default {
   extends: DefaultTheme,
@@ -14,6 +14,6 @@ export default {
     })
   },
   enhanceApp({ app, router, siteData }) {
-    // ...
+    setupVersionBadges();
   }
-} satisfies Theme
+} satisfies Theme;
