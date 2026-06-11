@@ -15,20 +15,14 @@
       # `self` contains the flake source tree, but not the `.git`
       # directory, so fetch a full remote clone for Git metadata.
       # The more recent this is, the better the timestamps will be.
-      remoteSrc = pkgs.fetchFromGitHub {
-        owner = "Sigrist-und-Partner-AG";
-        repo = "knowledge-base";
-        rev = "5b97e06957d85c15804ec09ec0959fd51e60492d";
-        hash = "sha256-eidaSauzx0DJgdkFJ6pgyRhHQ98yox7PjPVvmZPI8vQ=";
-
-        leaveDotGit = true;
-        deepClone = true;
-      };
+      remoteFile = "nix/remote.json";
+      remote = builtins.fromJSON (builtins.readFile (./. + "/${remoteFile}"));
+      remoteSrc = pkgs.fetchFromGitHub remote;
 
       # Filter down the remote source tree to only the `.git` directory.
       # It will be symlinked into the source root during the build.
       gitHistory = lib.cleanSourceWith {
-        name = "knowledge-base-git";
+        name = "${remote.repo}-git";
         src = remoteSrc;
         filter =
           path: type:
@@ -40,7 +34,7 @@
       };
 
       npmDefaults = {
-        pname = "knowledge-base";
+        pname = remote.repo;
         version = "0.0.1";
         src = self;
 
@@ -104,8 +98,33 @@
         text = ''
           echo Built site served at ${url}/${base}/
 
-          { 2>/dev/null caddy fmt ${caddyfile} || :; } \
+          # Caddy complains if the Caddyfile is not formatted using tabs,
+          # so auto-format it and pass it to the server via standard input.
+          { caddy fmt ${caddyfile} 2>/dev/null || :; } \
           | exec caddy run --adapter caddyfile --config -
+        '';
+      };
+
+      updateGitHistory = pkgs.writeShellApplication {
+        name = "update-git-history";
+        runtimeInputs = [ pkgs.nix-prefetch-github ];
+        text = ''
+          prefetch() {
+            nix-prefetch-github \
+              --deep-clone \
+              --leave-dot-git \
+              ${remote.owner} \
+              ${remote.repo}
+          }
+           
+          if remote_json="$(prefetch 2>/dev/null)"; then
+            printf '%s\n' "$remote_json" > ${remoteFile}
+          else
+            error=$?
+            >&2 echo "Failed to update '${remoteFile}' (exit code $error)."
+            >&2 echo "Are you connected to the internet?"
+            exit $error
+          fi
         '';
       };
     in
@@ -125,13 +144,29 @@
 
           # VitePress hangs if "$CI" is unset
           CI = "1";
+
+          meta = {
+            description = "The official H. Sigrist & Partner AG knowledge base";
+            homepage = "https://dosiersysteme.ch/docs";
+            license = lib.licenses.cc-by-40;
+            platforms = [ system ];
+          };
         }
       );
 
-      apps.${system}.default = {
-        type = "app";
-        program = lib.getExe serveDocs;
-        meta.description = "Serve the knowledge base locally";
+      apps.${system} = {
+
+        default = {
+          type = "app";
+          program = lib.getExe serveDocs;
+          meta.description = "Serve the knowledge base locally";
+        };
+
+        updateGitHistory = {
+          type = "app";
+          program = lib.getExe updateGitHistory;
+          meta.description = "Pin Git metadata to remote HEAD for VitePress";
+        };
       };
 
       # Verify that the VitePress site builds successfully
