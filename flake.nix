@@ -12,6 +12,33 @@
       pkgs = import nixpkgs { inherit system; };
       inherit (pkgs) lib;
 
+      # `self` contains the flake source tree, but not the `.git`
+      # directory, so fetch a full remote clone for Git metadata.
+      # The more recent this is, the better the timestamps will be.
+      remoteSrc = pkgs.fetchFromGitHub {
+        owner = "Sigrist-und-Partner-AG";
+        repo = "knowledge-base";
+        rev = "5b97e06957d85c15804ec09ec0959fd51e60492d";
+        hash = "sha256-eidaSauzx0DJgdkFJ6pgyRhHQ98yox7PjPVvmZPI8vQ=";
+
+        leaveDotGit = true;
+        deepClone = true;
+      };
+
+      # Filter down the remote source tree to only the `.git` directory.
+      # It will be symlinked into the source root during the build.
+      gitHistory = lib.cleanSourceWith {
+        name = "knowledge-base-git";
+        src = remoteSrc;
+        filter =
+          path: type:
+          let
+            pathStr = toString path;
+            gitDir = "${remoteSrc}/.git";
+          in
+          pathStr == gitDir || lib.hasPrefix "${gitDir}/" pathStr;
+      };
+
       npmDefaults = {
         pname = "knowledge-base";
         version = "0.0.1";
@@ -19,6 +46,11 @@
 
         # VitePress invokes Git to obtain `lastUpdated` timestamps
         nativeBuildInputs = [ pkgs.git ];
+        postUnpack = ''
+          ln -s ${gitHistory}/.git "$sourceRoot/.git"
+        '';
+
+        # VitePress requires Node.js ≥ 20
         nodejs = pkgs.nodejs_24;
 
         # Derive NPM dependency hashes from `package-lock.json`
