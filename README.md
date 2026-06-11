@@ -42,6 +42,12 @@ npm run docs:dev
 
 ### Nix Workflow
 
+Verify the build:
+
+```shell
+nix flake check
+```
+
 Generate the static site:
 
 ```shell
