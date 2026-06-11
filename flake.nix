@@ -107,6 +107,7 @@
         serveDocs = pkgs.writeShellApplication {
           name = "serve-docs";
           runtimeInputs = [ pkgs.caddy ];
+          inheritPath = false;
           text = ''
             echo Built site served at ${url}/${base}/
 
@@ -119,7 +120,11 @@
 
         updateGitHistory = pkgs.writeShellApplication {
           name = "update-git-history";
-          runtimeInputs = [ pkgs.nix-prefetch-github ];
+          runtimeInputs = [
+            pkgs.git
+            pkgs.nix-prefetch-github
+          ];
+          inheritPath = false;
           text = ''
             prefetch() {
               nix-prefetch-github \
