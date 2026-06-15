@@ -24,39 +24,13 @@
         pkgs = import nixpkgs { inherit system; };
         inherit (pkgs) lib;
 
-        # `self` contains the flake source tree, but not the `.git`
-        # directory, so fetch a full remote clone for Git metadata.
-        # The more recent this is, the better the timestamps will be.
-        remoteFile = "nix/remote.json";
-        remote = builtins.fromJSON (builtins.readFile (./. + "/${remoteFile}"));
-        remoteSrc = pkgs.fetchFromGitHub remote;
-
-        # Filter down the remote source tree to only the `.git` directory.
-        # It will be symlinked into the source root during the build.
-        gitHistory = lib.cleanSourceWith {
-          name = "${remote.repo}-git";
-          src = remoteSrc;
-          filter =
-            path: type:
-            let
-              pathStr = toString path;
-              gitDir = "${remoteSrc}/.git";
-            in
-            pathStr == gitDir || lib.hasPrefix "${gitDir}/" pathStr;
-        };
-
         npmDefaults = {
-          pname = remote.repo;
+          pname = "knowledge-base";
           version = "0.0.1";
           src = self;
 
-          # VitePress invokes Git to obtain `lastUpdated` timestamps
+          # VitePress requires Git and Node.js ≥ 20
           nativeBuildInputs = [ pkgs.git ];
-          postUnpack = ''
-            ln -s ${gitHistory}/.git "$sourceRoot/.git"
-          '';
-
-          # VitePress requires Node.js ≥ 20
           nodejs = pkgs.nodejs_24;
 
           # Derive NPM dependency hashes from `package-lock.json`
@@ -118,30 +92,24 @@
           '';
         };
 
-        updateGitHistory = pkgs.writeShellApplication {
-          name = "update-git-history";
+        # Since the Git history itself isn't available when building with Nix,
+        # VitePress cannot generate its list of `lastUpdated` timestamps.
+        # Instead, `docs/.vitepress/timestamps.json` is injected,
+        # which is updated whenever this script is run locally.
+        updateTimestamps = pkgs.writeShellApplication {
+          name = "update-timestamps";
           runtimeInputs = [
             pkgs.git
-            pkgs.nix-prefetch-github
+            pkgs.jq
           ];
           inheritPath = false;
           text = ''
-            prefetch() {
-              nix-prefetch-github \
-                --deep-clone \
-                --leave-dot-git \
-                ${remote.owner} \
-                ${remote.repo}
-            }
-
-            if remote_json="$(prefetch 2>/dev/null)"; then
-              printf '%s\n' "$remote_json" > ${remoteFile}
-            else
-              error=$?
-              >&2 echo "Failed to update '${remoteFile}' (exit code $error)."
-              >&2 echo "Are you connected to the internet?"
-              exit $error
-            fi
+            # Obtain the latest timestamp for every Markdown file
+            cd "$(git rev-parse --show-toplevel)/${base}"
+            git ls-files '*.md' | while IFS= read -r file; do
+              timestamp="$(git log -1 --format=%ct -- "$file")"
+              printf '{ "%s": %s }\n' "$file" "$timestamp"
+            done | jq --slurp 'add // {}' > .vitepress/timestamps.json
           '';
         };
       in
@@ -179,10 +147,10 @@
             meta.description = "Serve the knowledge base locally";
           };
 
-          updateGitHistory = {
+          updateTimestamps = {
             type = "app";
-            program = lib.getExe updateGitHistory;
-            meta.description = "Pin Git metadata to remote HEAD for VitePress";
+            program = lib.getExe updateTimestamps;
+            meta.description = "Update page timestamps based on Git history";
           };
         };
 

@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { defineConfig } from 'vitepress';
 import { generateSidebar } from 'vitepress-sidebar';
 import { type Locale, english, german } from './i18n';
+import gitTimestamps from './timestamps.json';
 
 /** Loads a TextMate grammar from disk, returning it as an object. */
 function defineLanguage(name: string) {
@@ -94,5 +95,15 @@ export default defineConfig({
     languageLabel: {
       c100: 'C100-4.0'
     }
-  }
+  },
+  /* Prefer `lastUpdated` timestamps from `timestamps.json` over those
+   * obtained directly from Git. This makes the build Nix-compatible. */
+  transformPageData(pageData) {
+    const timestamps: Record<string, number> = gitTimestamps;
+    const seconds = timestamps[pageData.relativePath];
+    if (seconds !== undefined) {
+      const milliseconds = seconds * 1000;
+      pageData.lastUpdated = milliseconds;
+    }
+  },
 });

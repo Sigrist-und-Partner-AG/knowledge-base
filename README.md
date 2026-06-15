@@ -73,15 +73,15 @@ nix develop
 
 ### Repository Maintenance
 
-Refresh the pinned Git metadata:
+Refresh the cached page timestamps:
 
 ```shell
-# Updates 'nix/remote.json' to point to remote HEAD
-nix run .#updateGitHistory
+# Updates 'docs/.vitepress/timestamps.json' based on the Git history
+nix run .#updateTimestamps
 ```
 
 > [!IMPORTANT]
 > VitePress reads the Git history of every file to populate
 > the `lastUpdated` timestamp shown at the bottom of each page.
 > Since Nix flakes do not include Git metadata automatically,
-> it must be pinned explicitly.
+> timestamps must be versioned as part of the repository.
