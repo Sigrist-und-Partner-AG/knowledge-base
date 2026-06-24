@@ -1,4 +1,4 @@
-import { VERSIONS } from '../versions';
+import { VERSIONS } from '../globals';
 
 /** Queries the sidebar title and inserts the matching version badge.
  *  If no mapping exists for the title, no version badge is shown. */

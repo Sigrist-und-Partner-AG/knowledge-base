@@ -54,6 +54,7 @@ type ThemeLocale = {
 export type Locale = {
   lang: string,
   label: string,
+  license: string,
   themeConfig: ThemeLocale
 };
 
@@ -61,6 +62,7 @@ export type Locale = {
 export const english = {
   lang: 'en',
   label: 'English',
+  license: 'Licensed under',
   themeConfig: {
     lightModeSwitchTitle: 'Switch to light theme',
     darkModeSwitchTitle: 'Switch to dark theme',
@@ -118,6 +120,7 @@ export const english = {
 export const german = {
   lang: 'de',
   label: 'Deutsch',
+  license: 'Lizenziert unter',
   themeConfig: {
     lightModeSwitchTitle: 'Zum hellen Design wechseln',
     darkModeSwitchTitle: 'Zum dunklen Design wechseln',

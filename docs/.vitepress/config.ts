@@ -1,6 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { defineConfig } from 'vitepress';
+import { withResponsiveImages } from 'vitepress-plugin-responsive-images';
 import { generateSidebar } from 'vitepress-sidebar';
+import { COMPANY, LICENSE, PRODUCTS } from './globals';
 import { type Locale, english, german } from './i18n';
 import gitTimestamps from './timestamps.json';
 
@@ -36,19 +38,20 @@ function defineLocale(locale: Locale) {
     label: locale.label,
     themeConfig: {
       socialLinks: [
-        { icon: 'github', link: 'https://github.com/Sigrist-und-Partner-AG/knowledge-base' },
-        { icon: 'youtube', link: 'https://www.youtube.com/@HSigristPartnerAG' },
-        { icon: 'instagram', link: 'https://www.instagram.com/dosiersysteme/' }
+        { icon: 'github', link: COMPANY.URL.GITHUB },
+        { icon: 'youtube', link: COMPANY.URL.YOUTUBE },
+        { icon: 'instagram', link: COMPANY.URL.INSTAGRAM }
       ],
       nav: [
-        { text: 'Webshop', link: `https://dosiersysteme.ch/${locale.lang}/` },
-        { text: 'C100-4.0', link: `/${locale.lang}/C100-4.0/` }
+        { text: 'Webshop', link: `${COMPANY.URL.WEBSITE}/${locale.lang}/` },
+        { text: PRODUCTS.C100, link: `/${locale.lang}/${PRODUCTS.C100}/` }
       ],
       sidebar: generateSidebar([
-        defineSidebar(locale.lang, 'C100-4.0')
+        defineSidebar(locale.lang, PRODUCTS.C100)
       ]),
       footer: {
-        copyright: '© 2026 H. Sigrist & Partner AG'
+        message: `${locale.license} ${LICENSE.NAME}`,
+        copyright: `Copyright © ${LICENSE.COPYRIGHT} ${COMPANY.NAME}`
       },
       ...locale.themeConfig
     }
@@ -56,54 +59,62 @@ function defineLocale(locale: Locale) {
 }
 
 /** The complete configuration that takes effect. */
-export default defineConfig({
-  title: 'Knowledge Base',
-  description: 'H. Sigrist & Partner AG Knowledge Base',
-  base: '/docs/',
-  cleanUrls: true,
-  locales: {
-    en: defineLocale(english),
-    de: defineLocale(german)
-  },
-  themeConfig: {
-    search: {
-      provider: 'local' as const,
-      options: {
-        detailedView: true
-      }
-    },
-    outline: {
-      level: [2, 3]
-    },
-    lastUpdated: {
-      formatOptions: {
-        forceLocale: true
-      }
-    },
-    editLink: {
-      pattern: 'https://github.com/Sigrist-und-Partner-AG/knowledge-base/edit/master/docs/:path'
-    }
-  },
-  markdown: {
-    theme: {
-      light: 'material-theme-lighter',
-      dark: 'tokyo-night'
-    },
-    languages: [
-      defineLanguage('c100')
+export default withResponsiveImages(
+  defineConfig({
+    head: [
+      ['meta', { property: 'og:site_name', content: `${COMPANY.NAME} ${COMPANY.PORTAL}` }],
+      ['meta', { name: 'author', content: COMPANY.NAME }],
+      ['link', { rel: 'license', href: LICENSE.URL }]
     ],
-    languageLabel: {
-      c100: 'C100-4.0'
-    }
-  },
-  /* Prefer `lastUpdated` timestamps from `timestamps.json` over those
-   * obtained directly from Git. This makes the build Nix-compatible. */
-  transformPageData(pageData) {
-    const timestamps: Record<string, number> = gitTimestamps;
-    const seconds = timestamps[pageData.relativePath];
-    if (seconds !== undefined) {
-      const milliseconds = seconds * 1000;
-      pageData.lastUpdated = milliseconds;
-    }
-  },
-});
+    title: COMPANY.PORTAL,
+    titleTemplate: `:title | ${COMPANY.INITIALS}`,
+    description: `${COMPANY.NAME} ${COMPANY.PORTAL}`,
+    base: '/docs/',
+    cleanUrls: true,
+    locales: {
+      en: defineLocale(english),
+      de: defineLocale(german)
+    },
+    themeConfig: {
+      search: {
+        provider: 'local' as const,
+        options: {
+          detailedView: true
+        }
+      },
+      outline: {
+        level: [2, 3]
+      },
+      lastUpdated: {
+        formatOptions: {
+          forceLocale: true
+        }
+      },
+      editLink: {
+        pattern: `${COMPANY.URL.GITHUB}/edit/master/docs/:path`
+      }
+    },
+    markdown: {
+      theme: {
+        light: 'material-theme-lighter',
+        dark: 'tokyo-night'
+      },
+      languages: [
+        defineLanguage('c100')
+      ],
+      languageLabel: {
+        c100: PRODUCTS.C100
+      }
+    },
+    /* Prefer `lastUpdated` timestamps from `timestamps.json` over those
+    * obtained directly from Git. This makes the build Nix-compatible. */
+    transformPageData(pageData) {
+      const timestamps: Record<string, number> = gitTimestamps;
+      const seconds = timestamps[pageData.relativePath];
+      if (seconds !== undefined) {
+        const milliseconds = seconds * 1000;
+        pageData.lastUpdated = milliseconds;
+      }
+    },
+  })
+);

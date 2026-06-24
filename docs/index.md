@@ -1,25 +1,21 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
+navbar: false
 
 hero:
-  name: "Knowledge Base"
-  text: "H. Sigrist & Partner AG Knowledge Base"
-  tagline: My great project tagline
-  actions:
-    - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
-    - theme: alt
-      text: API Examples
-      link: /api-examples
+  name: Knowledge Base
+  text: H. Sigrist & Partner AG
+  tagline: Choose language
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - icon: 🇬🇧
+    title: English
+    details: Continue to the English knowledge base
+    linkText: Open documentation
+    link: /en/
+  - icon: 🇩🇪
+    title: Deutsch
+    details: Weiter zur deutschen Wissensdatenbank
+    linkText: Dokumentation öffnen
+    link: /de/
 ---
-
