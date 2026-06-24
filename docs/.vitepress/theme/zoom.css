@@ -1,0 +1,9 @@
+.medium-zoom-overlay {
+  backdrop-filter: blur(6px);
+}
+
+/* Make enlarged images appear *before* the sidebar */
+.medium-zoom-overlay,
+.medium-zoom-image--opened {
+  z-index: 9999;
+}

@@ -2,9 +2,12 @@ import { h } from 'vue';
 import type { Theme } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 
+import { setupVersionBadges } from './badge';
+import { setupImageZoom } from './zoom';
+
 import './style.css';
 import './badge.css';
-import { setupVersionBadges } from './badge';
+import './zoom.css';
 
 export default {
   extends: DefaultTheme,
@@ -15,5 +18,6 @@ export default {
   },
   enhanceApp({ app, router, siteData }) {
     setupVersionBadges();
+    router.onAfterRouteChange = setupImageZoom();
   }
 } satisfies Theme;

@@ -12,7 +12,7 @@ features:
       alt: Prozesscontroller C100-4.0
       width: 220
       height: 137
-    title: C100-4.0
+    title: C100-4.0®
     details: Flexibler Prozesscontroller für anspruchsvolle Automatisierungsaufgaben
     linkText: Plattform entdecken
     link: /de/C100-4.0/

@@ -12,7 +12,7 @@ features:
       alt: C100-4.0 process controller
       width: 220
       height: 137
-    title: C100-4.0
+    title: C100-4.0®
     details: Flagship industrial controller for advanced automation and process control
     linkText: Explore platform
     link: /en/C100-4.0/
