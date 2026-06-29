@@ -1,3 +1,7 @@
+---
+order: 1
+---
+
 # Einstellungen
 
 Die Datei `settings.txt` enthält systemweite Geräteeinstellungen.

@@ -1,3 +1,7 @@
+---
+order: 4
+---
+
 # Flowmeters
 
 Each `flowmeter#.txt` file configures one flowmeter.
@@ -93,8 +97,8 @@ The offset subtracted from each sample to correct for sensor drift.
 
 The correction factor applied to all measurements.
 
-| Value                 | Description                                                      |
-|-----------------------|------------------------------------------------------------------|
+| Value                 | Description                                              |
+|-----------------------|----------------------------------------------------------|
 | `10.00%` – `1000.00%` | Measurements are scaled linearly by the given percentage |
 
 **Default:** `100.00%`

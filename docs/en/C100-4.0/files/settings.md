@@ -1,3 +1,7 @@
+---
+order: 1
+---
+
 # Settings
 
 The `settings.txt` file contains system-wide device settings.

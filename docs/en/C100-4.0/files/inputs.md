@@ -1,3 +1,7 @@
+---
+order: 2
+---
+
 # Analog Inputs
 
 Each `input#.txt` file configures a single analog input.

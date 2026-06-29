@@ -1,3 +1,7 @@
+---
+order: 3
+---
+
 # Motors
 
 Each `motor#.txt` file configures the corresponding motor.
@@ -73,11 +77,11 @@ The unit classes enabled for the motor.
 
 Each class corresponds to a physical dimension for motion parameterization.
 
-| Value    | Description        |
-|----------|--------------------|
-| `volume` | Volumetric units   |
-| `length` | Linear units       |
-| `angle`  | Angular units      |
+| Value    | Description      |
+|----------|------------------|
+| `volume` | Volumetric units |
+| `length` | Linear units     |
+| `angle`  | Angular units    |
 
 **Default:** _(none)_
 
@@ -89,8 +93,8 @@ Each class corresponds to a physical dimension for motion parameterization.
 
 The correction factor applied to all motor motion.
 
-| Value                 | Description                                            |
-|-----------------------|--------------------------------------------------------|
+| Value                 | Description                                       |
+|-----------------------|---------------------------------------------------|
 | `1.00%` – `10000.00%` | Motion is scaled linearly by the given percentage |
 
 **Default:** `100.00%`

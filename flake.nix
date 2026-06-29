@@ -108,7 +108,7 @@
             cd "$(git rev-parse --show-toplevel)/${base}"
             git ls-files '*.md' | while IFS= read -r file; do
               timestamp="$(git log -1 --format=%ct -- "$file")"
-              printf '{ "%s": %s }\n' "$file" "$timestamp"
+              [ -n "$timestamp" ] && printf '{ "%s": %s }\n' "$file" "$timestamp"
             done | jq --slurp 'add // {}' > .vitepress/timestamps.json
           '';
         };

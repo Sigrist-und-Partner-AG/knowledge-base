@@ -1,3 +1,7 @@
+---
+order: 2
+---
+
 # Analogeingänge
 
 Jede `input#.txt`-Datei konfiguriert einen Analogeingang.
