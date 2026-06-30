@@ -4,7 +4,7 @@ order: 3
 
 # Motoren
 
-Jede `motor#.txt`-Datei konfiguriert einen Motor.
+Jede `motor#.txt`-Datei konfiguriert den jeweiligen Motor.
 `#` steht für die Dateinummer.
 
 Es werden bis zu 4 Motoren unterstützt.

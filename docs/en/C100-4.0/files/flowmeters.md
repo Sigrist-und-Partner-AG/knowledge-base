@@ -72,7 +72,7 @@ The fluid base that best describes the measured medium.
 
 | Value | Description                     |
 |-------|---------------------------------|
-| `H20` | The medium is water-based       |
+| `H2O` | The medium is water-based       |
 | `IPA` | The medium is isopropanol-based |
 
 **Default:** `IPA`

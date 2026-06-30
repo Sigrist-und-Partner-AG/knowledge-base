@@ -72,7 +72,7 @@ Basisflüssigkeit, welche dem zu messenden Medium am ehesten entspricht.
 
 | Wert  | Beschreibung                       |
 |-------|------------------------------------|
-| `H20` | Das Medium basiert auf Wasser      |
+| `H2O` | Das Medium basiert auf Wasser      |
 | `IPA` | Das Medium basiert auf Isopropanol |
 
 **Standardwert:** `IPA`
