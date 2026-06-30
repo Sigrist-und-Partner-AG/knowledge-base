@@ -64,6 +64,7 @@ export default withResponsiveImages(
     head: [
       ['meta', { property: 'og:site_name', content: `${COMPANY.NAME} ${COMPANY.PORTAL}` }],
       ['meta', { name: 'author', content: COMPANY.NAME }],
+      ['meta', { name: 'attribution', content: 'Flag graphics by Twemoji, licensed under CC BY 4.0' }],
       ['link', { rel: 'license', href: LICENSE.URL }]
     ],
     title: COMPANY.PORTAL,

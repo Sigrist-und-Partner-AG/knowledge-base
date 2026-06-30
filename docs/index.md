@@ -8,12 +8,22 @@ hero:
   tagline: Choose language
 
 features:
-  - icon: 🇬🇧
+  - icon:
+      src: /images/flags/en.svg
+      alt: English
+      width: 28
+      height: 28
+      wrap: true
     title: English
     details: Continue to the English knowledge base
     linkText: Open documentation
     link: /en/
-  - icon: 🇩🇪
+  - icon:
+      src: /images/flags/de.svg
+      alt: Deutsch
+      width: 28
+      height: 28
+      wrap: true
     title: Deutsch
     details: Weiter zur deutschen Wissensdatenbank
     linkText: Dokumentation öffnen
